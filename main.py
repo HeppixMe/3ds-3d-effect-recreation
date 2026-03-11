@@ -68,11 +68,11 @@ while running:
     pygame.draw.polygon(screen,(255,255,255),[(paralaxX-paralax_wx,paralaxY+paralax_wy),(paralaxX-paralax_wx,paralaxY-paralax_wy),(0,0),(0,window_h)])
     pygame.draw.polygon(screen,(255,255,255),[(paralaxX+paralax_wx,paralaxY-paralax_wy),(paralaxX-paralax_wx,paralaxY-paralax_wy),(0,0),(window_w,0)])
 
-    pygame.draw.rect(screen,(150,150,150),(paralaxX-paralax_wx,paralaxY-paralax_wy,paralax_wx*2,paralax_wy*2), 1)
-    pygame.draw.line(screen,(150,150,150),(0,0),(paralaxX-paralax_wx,paralaxY-paralax_wy),1)
-    pygame.draw.line(screen,(150,150,150),(window_w,0),(paralaxX+paralax_wx,paralaxY-paralax_wy),1)
-    pygame.draw.line(screen,(150,150,150),(0,window_h),(paralaxX-paralax_wx,paralaxY+paralax_wy),1)
-    pygame.draw.line(screen,(150,150,150),(window_w,window_h),(paralaxX+paralax_wx,paralaxY+paralax_wy),1)
+    pygame.draw.rect(screen,(150,150,150),(paralaxX-paralax_wx,paralaxY-paralax_wy,paralax_wx*2,paralax_wy*2),2)
+    pygame.draw.line(screen,(150,150,150),(0,0),(paralaxX-paralax_wx,paralaxY-paralax_wy),2)
+    pygame.draw.line(screen,(150,150,150),(window_w,0),(paralaxX+paralax_wx,paralaxY-paralax_wy),2)
+    pygame.draw.line(screen,(150,150,150),(0,window_h),(paralaxX-paralax_wx,paralaxY+paralax_wy),2)
+    pygame.draw.line(screen,(150,150,150),(window_w,window_h),(paralaxX+paralax_wx,paralaxY+paralax_wy),2)
 
     #würfel
 
