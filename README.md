@@ -1,7 +1,7 @@
 # 3DS 3D‑Effect Recreation
 
 Dieses kleine Python‑Projekt nutzt OpenCV und Pygame,  
-um die 3D funktion eines Nintendo 3Ds nachzumachen.
+um die 3D funktion eines Nintendo 3Ds nachzuahmen.
 
 ## Voraussetzungen
 
