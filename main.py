@@ -13,9 +13,7 @@ kopfMittelpunkt = (0,0)
 kopfDim = (100,100)
 
 def map_range(x, a, b, c, d):
-    # Normiere zunächst auf 0…1
     t = (x - a) / (b - a)
-    # Skaliere in den Zielbereich
     return c + t * (d - c)
 
 
@@ -49,15 +47,15 @@ while running:
     paralaxX = map_range(kopfX, 0,window_w,window_w/paralax_paralax,window_w-window_w/paralax_paralax)
     paralaxY = map_range(kopfY, 0,window_h,window_h/paralax_paralax,window_h-window_h/paralax_paralax)
 
-    #cv2.imshow("frame",frame)
+    cv2.imshow("frame",frame)
 
     screen.fill((0, 0, 0))
 
 
     #env
     paralax_paralax = 6
-    paralax_wx = 1280/4#*(1-(round(kopfDim[0])/1000))
-    paralax_wy = 800/4#*(1-(round(kopfDim[1])/1000))
+    paralax_wx = window_w/4#*(1-(round(kopfDim[0])/1000))
+    paralax_wy = window_h/4#*(1-(round(kopfDim[1])/1000))
     paralaxX = map_range(kopfX, 0,window_w,window_w/paralax_paralax,window_w-window_w/paralax_paralax)
     paralaxY = map_range(kopfY, 0,window_h,window_h/paralax_paralax,window_h-window_h/paralax_paralax)
 
