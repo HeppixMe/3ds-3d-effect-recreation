@@ -16,7 +16,35 @@ def map_range(x, a, b, c, d):
     t = (x - a) / (b - a)
     return c + t * (d - c)
 
+def draw_enviroment():
+    paralax_paralax = 6
+    paralax_wx = window_w/4#*(1-(round(kopfDim[0])/1000))
+    paralax_wy = window_h/4#*(1-(round(kopfDim[1])/1000))
+    paralaxX = map_range(kopfX, 0,window_w,window_w/paralax_paralax,window_w-window_w/paralax_paralax)
+    paralaxY = map_range(kopfY, 0,window_h,window_h/paralax_paralax,window_h-window_h/paralax_paralax)
 
+    pygame.draw.rect(screen,(255,255,255),(paralaxX-paralax_wx,paralaxY-paralax_wy,paralax_wx*2,paralax_wy*2), 0)
+
+    pygame.draw.polygon(screen,(255,255,255),[(paralaxX+paralax_wx,paralaxY+paralax_wy),(paralaxX-paralax_wx,paralaxY+paralax_wy),(0,window_h),(window_w,window_h)])
+    pygame.draw.polygon(screen,(255,255,255),[(paralaxX+paralax_wx,paralaxY+paralax_wy),(paralaxX+paralax_wx,paralaxY-paralax_wy),(window_w,0),(window_w,window_h)])
+    pygame.draw.polygon(screen,(255,255,255),[(paralaxX-paralax_wx,paralaxY+paralax_wy),(paralaxX-paralax_wx,paralaxY-paralax_wy),(0,0),(0,window_h)])
+    pygame.draw.polygon(screen,(255,255,255),[(paralaxX+paralax_wx,paralaxY-paralax_wy),(paralaxX-paralax_wx,paralaxY-paralax_wy),(0,0),(window_w,0)])
+
+    pygame.draw.rect(screen,(150,150,150),(paralaxX-paralax_wx,paralaxY-paralax_wy,paralax_wx*2,paralax_wy*2),2)
+    pygame.draw.line(screen,(150,150,150),(0,0),(paralaxX-paralax_wx,paralaxY-paralax_wy),2)
+    pygame.draw.line(screen,(150,150,150),(window_w,0),(paralaxX+paralax_wx,paralaxY-paralax_wy),2)
+    pygame.draw.line(screen,(150,150,150),(0,window_h),(paralaxX-paralax_wx,paralaxY+paralax_wy),2)
+    pygame.draw.line(screen,(150,150,150),(window_w,window_h),(paralaxX+paralax_wx,paralaxY+paralax_wy),2)
+
+def draw_cube():
+    paralax_w = 110
+    pygame.draw.rect(screen,(200,0,0),(kopfX-100,kopfY-100,200,200), 5)
+    pygame.draw.line(screen,(230,0,0),(kopfX-100,kopfY-100),(paralaxX-paralax_w,paralaxY-paralax_w),5)
+    pygame.draw.line(screen,(230,0,0),(kopfX+100,kopfY-100),(paralaxX+paralax_w,paralaxY-paralax_w),5)
+    pygame.draw.line(screen,(230,0,0),(kopfX-100,kopfY+100),(paralaxX-paralax_w,paralaxY+paralax_w),5)
+    pygame.draw.line(screen,(230,0,0),(kopfX+100,kopfY+100),(paralaxX+paralax_w,paralaxY+paralax_w),5)
+    pygame.draw.rect(screen,(240,0,0),(paralaxX-paralax_w,paralaxY-paralax_w,paralax_w*2,paralax_w*2), 5)
+    
 running = True
 while running:
     for event in pygame.event.get():
@@ -47,40 +75,12 @@ while running:
     paralaxX = map_range(kopfX, 0,window_w,window_w/paralax_paralax,window_w-window_w/paralax_paralax)
     paralaxY = map_range(kopfY, 0,window_h,window_h/paralax_paralax,window_h-window_h/paralax_paralax)
 
-    cv2.imshow("frame",frame)
+    # cv2.imshow("frame",frame)
 
     screen.fill((0, 0, 0))
 
-
-    #env
-    paralax_paralax = 6
-    paralax_wx = window_w/4#*(1-(round(kopfDim[0])/1000))
-    paralax_wy = window_h/4#*(1-(round(kopfDim[1])/1000))
-    paralaxX = map_range(kopfX, 0,window_w,window_w/paralax_paralax,window_w-window_w/paralax_paralax)
-    paralaxY = map_range(kopfY, 0,window_h,window_h/paralax_paralax,window_h-window_h/paralax_paralax)
-
-    pygame.draw.rect(screen,(255,255,255),(paralaxX-paralax_wx,paralaxY-paralax_wy,paralax_wx*2,paralax_wy*2), 0)
-
-    pygame.draw.polygon(screen,(255,255,255),[(paralaxX+paralax_wx,paralaxY+paralax_wy),(paralaxX-paralax_wx,paralaxY+paralax_wy),(0,window_h),(window_w,window_h)])
-    pygame.draw.polygon(screen,(255,255,255),[(paralaxX+paralax_wx,paralaxY+paralax_wy),(paralaxX+paralax_wx,paralaxY-paralax_wy),(window_w,0),(window_w,window_h)])
-    pygame.draw.polygon(screen,(255,255,255),[(paralaxX-paralax_wx,paralaxY+paralax_wy),(paralaxX-paralax_wx,paralaxY-paralax_wy),(0,0),(0,window_h)])
-    pygame.draw.polygon(screen,(255,255,255),[(paralaxX+paralax_wx,paralaxY-paralax_wy),(paralaxX-paralax_wx,paralaxY-paralax_wy),(0,0),(window_w,0)])
-
-    pygame.draw.rect(screen,(150,150,150),(paralaxX-paralax_wx,paralaxY-paralax_wy,paralax_wx*2,paralax_wy*2),2)
-    pygame.draw.line(screen,(150,150,150),(0,0),(paralaxX-paralax_wx,paralaxY-paralax_wy),2)
-    pygame.draw.line(screen,(150,150,150),(window_w,0),(paralaxX+paralax_wx,paralaxY-paralax_wy),2)
-    pygame.draw.line(screen,(150,150,150),(0,window_h),(paralaxX-paralax_wx,paralaxY+paralax_wy),2)
-    pygame.draw.line(screen,(150,150,150),(window_w,window_h),(paralaxX+paralax_wx,paralaxY+paralax_wy),2)
-
-    #würfel
-
-    paralax_w = 110
-    pygame.draw.rect(screen,(200,0,0),(kopfX-100,kopfY-100,200,200), 5)
-    pygame.draw.line(screen,(230,0,0),(kopfX-100,kopfY-100),(paralaxX-paralax_w,paralaxY-paralax_w),5)
-    pygame.draw.line(screen,(230,0,0),(kopfX+100,kopfY-100),(paralaxX+paralax_w,paralaxY-paralax_w),5)
-    pygame.draw.line(screen,(230,0,0),(kopfX-100,kopfY+100),(paralaxX-paralax_w,paralaxY+paralax_w),5)
-    pygame.draw.line(screen,(230,0,0),(kopfX+100,kopfY+100),(paralaxX+paralax_w,paralaxY+paralax_w),5)
-    pygame.draw.rect(screen,(240,0,0),(paralaxX-paralax_w,paralaxY-paralax_w,paralax_w*2,paralax_w*2), 5)
+    draw_enviroment()
+    draw_cube()
 
     pygame.display.flip()
 
